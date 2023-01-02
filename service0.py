@@ -19,7 +19,11 @@ async def function(request):
 					# retrieve random rows from database
 					data = await fetchRandomRows(db)
 
-		return web.json_response({"name": "service0", "status": "OK", "response": data}, status = 200)
+		# print(data[0][1])
+		"""usernames = [item[1] for item in data]
+		githubLinks = [item[2] for item in data]
+		return web.json_response({"service_id": 0, "data": { "usernames": usernames, "githubLinks": githubLinks }}, status = 200)"""
+		return web.json_response({"name": "service0", "status": "OK", "data": data}, status = 200)
 	except Exception as e:
 		return web.json_response({"name": "service0", "error": str(e)}, status = 500)
 

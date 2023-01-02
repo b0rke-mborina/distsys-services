@@ -10,15 +10,12 @@ routes = web.RouteTableDef()
 async def function(request):
 	global responses
 	try:
-		# responses = []
-		# async with aiohttp.ClientSession(connector = aiohttp.TCPConnector(ssl = False)) as session:
 		responseData = await request.json()
 		if responseData.get("username").lower().startswith("w"):
 			# print("Found row with username starting with 'w':", responseData.get("username"))
 			response = await forwardToService4(responseData)
 			# print(response)
 			responses.append(response)
-			# if responseNew != "": response = responseNew
 		# print(responses)
 		
 		return web.json_response({"name": "service2", "status": "OK", "service4 response": responses}, status = 200)

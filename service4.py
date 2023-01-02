@@ -11,11 +11,11 @@ async def function(request):
 	global receivedCode
 	try:
 		# store received code to storage list
-		record = await request.json()
-		# print("Username:", record.get("username"))
-		# print("Content:", record.get("content").split("\n")[0])
-		receivedCode.append({"username": record.get("username"), "content": record.get("content")})
-		# print("Code", {"username": record.get("username"), "content": record.get("content")}, "received and stored!")
+		data = await request.json()
+		# print("Username:", data.get("username"))
+		# print("Content:", data.get("content").split("\n")[0])
+		receivedCode.append({"username": data.get("username"), "content": data.get("content")})
+		# print("Code", {"username": data.get("username"), "content": data.get("content")}, "received and stored!")
 		# print("Storage list", receivedCode)
 		# print("Storage list length =", len(receivedCode))
 

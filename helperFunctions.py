@@ -3,6 +3,7 @@ import aiosqlite
 import numpy as np
 import pandas as pd
 
+# retrieves random rows from database
 async def fetchRandomRows(connection):
 	# get total number of rows in the database table and generate random indices for selection
 	cursor = await connection.cursor()
@@ -19,11 +20,12 @@ async def fetchRandomRows(connection):
 	# print(len(rows))
 	return rows
 
+# reads json file with data and stores said data to database
 async def addDataToDatabase():
 	try:
 		dataframe = pd.read_json("data/dataset.json", lines = True)
 		async with aiosqlite.connect("distsys-services-database.db") as db:
-			for index, row in dataframe.head(1000).iterrows(): # 10000
+			for index, row in dataframe.head(10000).iterrows(): # 1000
 				# print("ROW", index + 1)
 				# print(row.get("repo_name"))
 				# print(row.get("repo_name").split("/")[0])
