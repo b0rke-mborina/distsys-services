@@ -18,7 +18,7 @@ async def function(request):
 			responses.append(response)
 		# print(responses)
 		
-		return web.json_response({"name": "service2", "status": "OK", "service4 response": responses}, status = 200)
+		return web.json_response({"name": "service2", "status": "OK", "service4 responses": responses}, status = 200)
 	except Exception as e:
 		return web.json_response({"name": "service3", "error": str(e)}, status = 500)
 

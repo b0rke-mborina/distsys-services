@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+#
+# Author: Roman Savchenko <r.sav4enko@gmail.com>
+# Created: 2014-10-15
+#
+# Id: $Id$
+
+from fabric.api import *
+from fabric.decorators import *
+
+env.hosts = ['pukanoid@pukanoid.dennytwix.com']
+client = 'pukanoid'
+
+
+@task
+def deploy():
+    with cd('/home/pukanoid/pukanoid_server'):
+        with prefix('source /home/pukanoid/pukanoid_server/.env/bin/activate'):
+            run('git pull')
+            # run('./manage.py migrate')
+            # run('./manage.py collectstatic --noinput')
+            sudo('supervisorctl restart pukanoid')
+
+# @task
+# def getdb():
+#     run('pg_dump ipractice > /tmp/ipractice.sql')
+#     get('/tmp/ipractice.sql', '/tmp/ipractice.sql')
+#     run('rm /tmp/ipractice.sql')
+#
+# @task
+# def updatedb():
+#     local('dropdb ipractice')
+#     local('createdb ipractice')
+#     local('psql ipractice < /tmp/ipractice.sql')
+#     local('rm /tmp/ipractice.sql')
+#
+#
+# @task
+# def syncdb():
+#     getdb()
+#     updatedb()
+
+#@task
+#def deploy_sandbox():
+#    local('git push')
+#
+#    with cd('/home/%s/api_sandbox' % client):
+#        with prefix('source /home/%s/api_sandbox/.env/bin/activate' % client):
+#            sudo('./ctl stop', user=client)
+#            sudo('git pull', user=client)
+#            sudo('./manage.py db_upgrade', user=client)
+#            sudo('./ctl start', user=client)
