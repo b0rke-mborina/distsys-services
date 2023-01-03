@@ -1,0 +1,31 @@
+version: "3"
+services:
+  service0:
+    build: service0
+    command: ["python", "./service0.py"]
+    ports:
+      - "8080:8080"
+
+  service1:
+    build: service1
+    command: ["python", "./service1.py"]
+    ports:
+      - "8081:8081"
+
+  service2:
+    build: service2
+    command: ["python", "./service2.py"]
+    ports:
+      - "8082:8082"
+
+  service3:
+    build: service3
+    command: ["python", "./service3.py"]
+    ports:
+      - "8083:8083"
+
+  service4:
+    build: service4
+    command: ["python", "./service4.py"]
+    ports:
+      - "8084:8084"
