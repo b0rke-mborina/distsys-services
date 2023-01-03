@@ -1,7 +1,5 @@
 FROM python:3.9.13
 
-# WORKDIR ./
-
 RUN pip install aiosqlite aiohttp numpy pandas
 
 COPY service0.py ./
@@ -11,4 +9,4 @@ COPY data/dataset.json ./data/
 
 CMD ["python", "./service0.py"]
 
-# CMD ["curl", "http://127.0.0.1:8081/"]
+# CMD ["curl", "http://127.0.0.1:8080/"]

@@ -103,6 +103,3 @@ class TestResponseValue:
 		data = response.json()
 		assert len(data.keys()) == 2
 		pass
-
-
-# python -m pytest -v

@@ -1,7 +1,7 @@
-import aiohttp
 import aiosqlite
 import numpy as np
 import pandas as pd
+
 
 # retrieves random rows from database
 async def fetchRandomRows(connection):
@@ -47,19 +47,3 @@ async def addDataToDatabase():
 	except Exception as e:
 		print("Error occured while adding data to database from dataset:", e)
 	pass
-
-# used for forwarding data to worker tokenizer (service2 or service3)
-async def forwardToWorkerTokenizer(workerTokenizerUrl, data):
-	for index in range(len(data)):
-		# print("Forwarding data[%s] to WorkerTokenizer"%(index))
-		async with aiohttp.ClientSession(connector = aiohttp.TCPConnector(ssl = False)) as session:
-			async with session.post(workerTokenizerUrl, json = data[index]) as response:
-				workerTokenizerResponse = await response.json()
-	return workerTokenizerResponse
-
-# forwards request to service4
-async def forwardToService4(data):
-	async with aiohttp.ClientSession(connector = aiohttp.TCPConnector(ssl = False)) as session:
-		async with session.post("http://service4:8084/gatherData", json = data) as response:
-			service4Response = await response.json()
-	return service4Response

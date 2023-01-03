@@ -1,8 +1,6 @@
 FROM python:3.9.13
 
-# WORKDIR ./
-
-RUN pip install aiosqlite aiohttp numpy pandas
+RUN pip install aiohttp
 
 COPY service2.py ./
 COPY helperFunctions.py ./
