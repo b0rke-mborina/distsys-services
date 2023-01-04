@@ -3,6 +3,10 @@
 **To start all services use command (in project root folder):**
 - docker compose up
 
+**Send GET request to:**
+- *http://localhost:8081/* (default functionality)
+- *http://localhost:8080/* (adding data to database and retrieving random data from database)
+
 **To build one service use command (in desired service folder):**
 - docker build -t distsys-service0 .
 - docker build -t distsys-service1 .
