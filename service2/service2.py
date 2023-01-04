@@ -1,24 +1,21 @@
 from aiohttp import web
 from helperFunctions import forwardToService4
 
-responses = []
+errorResponses = []
 
 routes = web.RouteTableDef()
 
 @routes.post("/")
 async def function(request):
-	global responses
-	print("here")
+	global errorResponses
 	try:
 		responseData = await request.json()
+		assert isinstance(responseData, dict)
 		if responseData.get("username").lower().startswith("w"):
-			# print("Found row with username starting with 'w':", responseData.get("username"))
 			response = await forwardToService4(responseData)
-			# print(response)
-			responses.append(response)
-		# print(responses)
+			if response.status_code == 500: errorResponses.append(response)
 		
-		return web.json_response({"name": "service2", "status": "OK", "service4 responses": responses}, status = 200)
+		return web.json_response({"name": "service2", "status": "OK", "service4 error responses": errorResponses}, status = 200)
 	except Exception as e:
 		return web.json_response({"name": "service3", "error": str(e)}, status = 500)
 

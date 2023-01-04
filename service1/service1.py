@@ -1,7 +1,7 @@
 import aiohttp
 import asyncio
 from aiohttp import web
-from helperFunctions import forwardToWorkerTokenizer
+from helperFunctions import forwardToWorkerTokenizer, fetchRepositoryCode
 
 routes = web.RouteTableDef()
 
@@ -12,15 +12,16 @@ async def function(request):
 			task = asyncio.create_task(session.get("http://service0:8080/"))
 			response = await asyncio.gather(task)
 			responseData = await response[0].json()
-			# print(responseData.get("data")[0])
-			# print(responseData.get("data")[0][1])
-			# print(len(responseData.get("data")))
 
-			# forward data to worker tokenizers in dictinary format
+			# save data to desired format
 			dictionaryData = [
 				{"id": item[0], "username": item[1], "ghlink": item[2], "filename": item[3], "content": item[4]} for item in responseData.get("data")
 			]
-			# print(dictionaryData)
+			"""dictionaryData = [
+				{"id": item[0], "username": item[1], "ghlink": item[2], "filename": item[3], "content": await fetchRepositoryCode(item[2])} for item in responseData.get("data")
+			]"""
+
+			# forward data to worker tokenizers in dictinary format
 			service2Response = await forwardToWorkerTokenizer("http://service2:8082/", dictionaryData)
 			service3Response = await forwardToWorkerTokenizer("http://service3:8083/", dictionaryData)
 

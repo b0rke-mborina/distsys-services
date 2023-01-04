@@ -1,6 +1,6 @@
 FROM python:3.9.13
 
-RUN pip install aiohttp asyncio
+RUN pip install aiohttp asyncio gitpython
 
 COPY service1.py ./
 COPY helperFunctions.py ./
