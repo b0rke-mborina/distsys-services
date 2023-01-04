@@ -87,14 +87,14 @@ class TestResponseValue:
 		requestBody = { "username": "with something", "content": "some code" }
 		response = requests.post("http://127.0.0.1:8082/", json = requestBody)
 		data = response.json()
-		assert isinstance(data.get("service4 responses"), list)
+		assert isinstance(data.get("service4 error responses"), list)
 		pass
 
 	def test_service3(self):
 		requestBody = { "username": "definately something", "content": "some code" }
 		response = requests.post("http://127.0.0.1:8083/", json = requestBody)
 		data = response.json()
-		assert isinstance(data.get("service4 responses"), list)
+		assert isinstance(data.get("service4 error responses"), list)
 		pass
 
 	def test_service4(self):
