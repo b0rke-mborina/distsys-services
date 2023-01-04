@@ -13,7 +13,6 @@ async def function(request):
 		assert isinstance(responseData, dict)
 		if responseData.get("username").lower().startswith("d"):
 			response = await forwardToService4(responseData)
-			print("res:", response)
 			if response.get("status") != "OK": errorResponses.append(response)
 
 		return web.json_response({"name": "service3", "status": "OK", "service4 error responses": errorResponses}, status = 200)
