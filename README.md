@@ -24,7 +24,9 @@
 **Commented out features / functionalities:**
 - returning only links and usernames (service0)
 - adding data to database before start (service0)
-- cloning repository code (service1)
+- cloning repository code and getting code from file (service1)
+- adding data to blockchain (service0)
+- getting data from blockchain (service0)
 
 **To test all services use command (in project root folder, while all services are running):**
 - python -m pytest -v

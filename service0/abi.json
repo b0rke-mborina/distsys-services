@@ -1,0 +1,35 @@
+[
+	{
+		"stateMutability": "nonpayable",
+		"type": "function",
+		"name": "addRecord",
+		"inputs": [
+			{ "name": "_username", "type": "string" },
+			{ "name": "_ghlink", "type": "string" },
+			{ "name": "_filename", "type": "string" }
+		],
+		"outputs": [],
+		"gas": 570359
+	},
+	{
+		"stateMutability": "nonpayable",
+		"type": "function",
+		"name": "getRecord",
+		"inputs": [ { "name": "id", "type": "int128" } ],
+		"outputs": [
+			{ "name": "id", "type": "int128" },
+			{ "name": "username", "type": "string" },
+			{ "name": "ghlink", "type": "string" },
+			{ "name": "filename", "type": "string" }
+		],
+		"gas": 51698
+	},
+	{
+		"stateMutability": "view",
+		"type": "function",
+		"name": "recordCount",
+		"inputs": [],
+		"outputs": [ { "name": "", "type": "int128" } ],
+		"gas": 2448
+	}
+]

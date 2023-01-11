@@ -9,6 +9,7 @@ routes = web.RouteTableDef()
 async def function(request):
 	try:
 		async with aiohttp.ClientSession(connector = aiohttp.TCPConnector(ssl = False)) as session:
+			# get data from service 0
 			task = asyncio.create_task(session.get("http://service0:8080/"))
 			response = await asyncio.gather(task)
 			responseData = await response[0].json()
@@ -18,7 +19,7 @@ async def function(request):
 				{"id": item[0], "username": item[1], "ghlink": item[2], "filename": item[3], "content": item[4]} for item in responseData.get("data")
 			]
 			"""dictionaryData = [
-				{"id": item[0], "username": item[1], "ghlink": item[2], "filename": item[3], "content": await fetchRepositoryCode(item[2])} for item in responseData.get("data")
+				{"id": item[0], "username": item[1], "ghlink": item[2], "filename": item[3], "content": await fetchRepositoryCode(item[2], item[3])} for item in responseData.get("data")
 			]"""
 
 			# forward data to worker tokenizers in dictinary format

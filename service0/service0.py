@@ -1,7 +1,7 @@
 import asyncio
 import aiosqlite
 from aiohttp import web
-from helperFunctions import fetchRandomRows, addDataToDatabase
+from helperFunctions import fetchRandomRows, addDataToDatabase, addDataToBlockchain, fetchDataFromBlockchain
 
 routes = web.RouteTableDef()
 
@@ -15,8 +15,10 @@ async def function(request):
 					# add data to database if database is empty
 					if row[0] == 0:
 						await addDataToDatabase()
-					# retrieve random rows from database
+						# await addDataToBlockchain()
+					# retrieve random rows
 					data = await fetchRandomRows(db)
+					# data = await fetchDataFromBlockchain()
 
 		"""usernames = [item[1] for item in data]
 		githubLinks = [item[2] for item in data]
