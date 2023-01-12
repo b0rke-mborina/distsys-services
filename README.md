@@ -33,7 +33,7 @@
 
 **Data in *service0/data/dataset.json*:**  https://huggingface.co/datasets/codeparrot/codeparrot-clean/resolve/main/file-000000000040.json.gz
 
-Dependencies:
+**Dependencies:**
 - aiosqlite
 - aiohttp
 - asyncio
@@ -41,4 +41,8 @@ Dependencies:
 - pathlib
 - numpy
 - pandas
+- pytest
 - gitpython
+- python-dotenv
+- web3
+- vyper
